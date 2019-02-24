@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - SpaceObject
+  - Enemy
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Player
+  - PlayerShot
+  - Enemy
+  - EnemyShot
+  - PickUps
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 3037779133
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Space Objects
+    uniqueID: 3027582931
+    locked: 0
+  - name: Enemies
+    uniqueID: 1542893319
+    locked: 0
+  - name: Shots
+    uniqueID: 4253590713
+    locked: 0
+  - name: Player
+    uniqueID: 2361143413
+    locked: 0
