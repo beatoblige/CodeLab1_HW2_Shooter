@@ -53,7 +53,7 @@ public class Wave : MonoBehaviour
 
     public void ContinueSpawning()
     {
-        if (currentWave < waves.Length - 1 && timeToNextWave > 0) //if current wave is at last wave
+        if (currentWave <= waves.Length - 1 && timeToNextWave > 0) //if current wave is at last wave
         {
             canSpawnWaves = true;
         }

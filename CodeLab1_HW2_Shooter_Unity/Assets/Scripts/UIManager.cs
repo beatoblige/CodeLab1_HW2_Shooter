@@ -14,6 +14,11 @@ public class UIManager : MonoBehaviour
     public Slider healthBar, shieldBar;
 
     public Text scoreText, HighScoreText;
+
+    public GameObject levelEndScreen;
+
+    public Text endScreenLevelScore, endScreenCurrentScore;
+    public GameObject highScoreNotice;
     private void Awake()
     {
         instance = this;

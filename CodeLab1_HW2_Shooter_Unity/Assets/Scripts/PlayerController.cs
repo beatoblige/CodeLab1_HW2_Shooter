@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
 
     public bool doubleShotActive;
     public float doubleShotOffset;
+
+    public bool stopMovement;
     
     
     // Start is called before the first frame update
@@ -41,33 +43,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        theRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * moveSpeed;
-
-        transform.position =
-            new Vector3(Mathf.Clamp(transform.position.x, bottomLeftLimit.position.x, topRightLimit.position.x),
-                Mathf.Clamp(transform.position.y, bottomLeftLimit.position.y, topRightLimit.position.y),
-                transform.position.z);
-
-        if (Input.GetButtonDown("Fire1"))
+        if (!stopMovement)
         {
-            if (!doubleShotActive)
-            {
-                Instantiate(shot, shotPoint.position, shotPoint.rotation);
 
-            }
-            else
-            {
-                Instantiate(shot, shotPoint.position + new Vector3(0f,doubleShotOffset, 0f), shotPoint.rotation);
-                Instantiate(shot, shotPoint.position - new Vector3(0f,doubleShotOffset, 0f), shotPoint.rotation);
-            }
-           
-            shotCounter = timeBetweenShots;
-        }
 
-        if (Input.GetButton("Fire1"))
-        {
-            shotCounter -= Time.deltaTime;
-            if (shotCounter <= 0)
+            theRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * moveSpeed;
+
+            transform.position =
+                new Vector3(Mathf.Clamp(transform.position.x, bottomLeftLimit.position.x, topRightLimit.position.x),
+                    Mathf.Clamp(transform.position.y, bottomLeftLimit.position.y, topRightLimit.position.y),
+                    transform.position.z);
+
+            if (Input.GetButtonDown("Fire1"))
             {
                 if (!doubleShotActive)
                 {
@@ -76,23 +63,51 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    Instantiate(shot, shotPoint.position + new Vector3(0f,doubleShotOffset, 0f), shotPoint.rotation);
-                    Instantiate(shot, shotPoint.position - new Vector3(0f,doubleShotOffset, 0f), shotPoint.rotation);
+                    Instantiate(shot, shotPoint.position + new Vector3(0f, doubleShotOffset, 0f), shotPoint.rotation);
+                    Instantiate(shot, shotPoint.position - new Vector3(0f, doubleShotOffset, 0f), shotPoint.rotation);
                 }
+
                 shotCounter = timeBetweenShots;
             }
 
-
-        }
-
-        if (boostCounter > 0)
-        {
-            boostCounter -= Time.deltaTime;
-            if (boostCounter <= 0)
+            if (Input.GetButton("Fire1"))
             {
-                moveSpeed = normalSpeed;
+                shotCounter -= Time.deltaTime;
+                if (shotCounter <= 0)
+                {
+                    if (!doubleShotActive)
+                    {
+                        Instantiate(shot, shotPoint.position, shotPoint.rotation);
+
+                    }
+                    else
+                    {
+                        Instantiate(shot, shotPoint.position + new Vector3(0f, doubleShotOffset, 0f),
+                            shotPoint.rotation);
+                        Instantiate(shot, shotPoint.position - new Vector3(0f, doubleShotOffset, 0f),
+                            shotPoint.rotation);
+                    }
+
+                    shotCounter = timeBetweenShots;
+                }
+
+
+            }
+
+            if (boostCounter > 0)
+            {
+                boostCounter -= Time.deltaTime;
+                if (boostCounter <= 0)
+                {
+                    moveSpeed = normalSpeed;
+                }
             }
         }
+        else
+        {
+            theRB.velocity = Vector2.zero; //setting up velocity to be zero when stopMovement happens
+        }
+        
     }
 
     public void ActivateSpeedBoost()

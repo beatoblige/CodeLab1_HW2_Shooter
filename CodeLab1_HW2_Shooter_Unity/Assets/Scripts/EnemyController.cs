@@ -81,7 +81,7 @@ public class EnemyController : MonoBehaviour
             int randomChance = Random.Range(0, 100);
             if (randomChance < dropSuccessRate)
             {
-                int randomPick = Random.Range(0, powerUps.Length); //will pici between 0-2
+                int randomPick = Random.Range(0, powerUps.Length); //will pick between 0-2
                 Instantiate(powerUps[randomPick], transform.position, transform.rotation);
 
             }

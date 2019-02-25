@@ -169,6 +169,7 @@ MonoBehaviour:
   - {fileID: 6041065293216459129, guid: bad1057d9d22549f897e8b271904e4e7, type: 3}
   - {fileID: 3537792586040263155, guid: 5c4d9594234e94a16bd671aa346d7828, type: 3}
   - {fileID: 7198216684317013119, guid: 4ad231a5938194a3fb67ff83733b658e, type: 3}
+  dropSuccessRate: 20
 --- !u!114 &9007483657977752681
 MonoBehaviour:
   m_ObjectHideFlags: 0
