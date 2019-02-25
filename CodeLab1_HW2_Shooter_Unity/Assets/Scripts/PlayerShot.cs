@@ -40,6 +40,11 @@ public class PlayerShot : MonoBehaviour
         {
             other.GetComponent<EnemyController>().HurtEnemy(); //calling hurt enemy function 
         }
+
+        if (other.tag == "Boss")
+        {
+            BossManager.instance.HurtBoss();
+        }
         
         Destroy(this.gameObject);  //destroy game object attached to the script 
     }

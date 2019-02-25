@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
     public float waitForLevelEnd = 5f;
 
     public string nextLevel;
+
+    private bool canPause;
    
     private void Awake()
     {
@@ -39,6 +42,8 @@ public class GameManager : MonoBehaviour
         UIManager.instance.HighScoreText.text = "High Score: " + highScore;
         currentScore = PlayerPrefs.GetInt("Current Score");// current score should stay constant from level to level 
         UIManager.instance.scoreText.text = "Score:" + currentScore;
+
+        canPause = true;
     }
 
     void Update()
@@ -47,6 +52,12 @@ public class GameManager : MonoBehaviour
         {
             PlayerController.instance.transform.position += new Vector3(PlayerController.instance.boostSpeed * Time.deltaTime, 0f, 0f);
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && canPause)
+        {
+            PauseUnpause();
+        }
+        
     }
 
     public void KillPlayer()
@@ -67,7 +78,9 @@ public class GameManager : MonoBehaviour
             
             MusicController.instance.PlayGameOver();
             PlayerPrefs.SetInt("High Score", highScore); //storing high score at game over
-            
+
+            canPause = false;
+
         }
         
         
@@ -104,6 +117,8 @@ public class GameManager : MonoBehaviour
         PlayerController.instance.stopMovement = true;
         levelEnding = true;
         MusicController.instance.PlayVictory();
+
+        canPause = false;
         
         yield return new WaitForSeconds(.5f);
 
@@ -132,5 +147,24 @@ public class GameManager : MonoBehaviour
 
         SceneManager.LoadScene(nextLevel);
     }
+
+    public void PauseUnpause()
+    {
+        if (UIManager.instance.pauseScreen.activeInHierarchy)
+        {
+            UIManager.instance.pauseScreen.SetActive(false);
+            Time.timeScale = 1f; //regular timed movements to game objects
+            PlayerController.instance.stopMovement = false;
+        }
+        
+        else
+        {
+            UIManager.instance.pauseScreen.SetActive(true);
+            Time.timeScale = 0f; //this will get objects to stop moving and freeze everything
+            PlayerController.instance.stopMovement = true;
+        }
+        
+    }
+  
 }
 
