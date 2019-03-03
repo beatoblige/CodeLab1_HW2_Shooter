@@ -26,6 +26,11 @@ public class PlayerController : MonoBehaviour
     public float doubleShotOffset;
 
     public bool stopMovement;
+
+    private Rigidbody2D rb;
+
+    private AudioSource myAudio;
+    public AudioClip myClip;
     
     
     // Start is called before the first frame update
@@ -38,6 +43,10 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         normalSpeed = moveSpeed;
+        rb = GetComponent<Rigidbody2D>();
+        myAudio = GetComponent<AudioSource>();
+        myAudio.PlayOneShot(myClip);
+
     }
 
     // Update is called once per frame
@@ -93,6 +102,8 @@ public class PlayerController : MonoBehaviour
 
 
             }
+            
+          
 
             if (boostCounter > 0)
             {
@@ -108,6 +119,15 @@ public class PlayerController : MonoBehaviour
             theRB.velocity = Vector2.zero; //setting up velocity to be zero when stopMovement happens
         }
         
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Pick Up"))
+        {
+            other.gameObject.SetActive(false);
+            myAudio.Play();
+            
+        }
     }
 
     public void ActivateSpeedBoost()
