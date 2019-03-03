@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
 
     public Slider bossHealthSlider;
     public Text bossName;
+
+    public string mainMenuName = "MainMenu";
     
     
     private void Awake()
@@ -50,7 +52,8 @@ public class UIManager : MonoBehaviour
 
     public void QuitToMain()
     {
-        
+        SceneManager.LoadScene(mainMenuName);
+        Time.timeScale = 1f;  //this allows thr game to not freeze at zero
     }
 
     public void Resume()
