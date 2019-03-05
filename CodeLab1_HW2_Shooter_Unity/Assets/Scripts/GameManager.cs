@@ -39,8 +39,8 @@ public class GameManager : MonoBehaviour
         UIManager.instance.livesText.text = "x" + currentLives;
         
         highScore = PlayerPrefs.GetInt("HighScore"); //sets initial value to the stored high score in PlayerPrefs
-        UIManager.instance.HighScoreText.text = "High Score: " + highScore;
-        currentScore = PlayerPrefs.GetInt("Current Score");// current score should stay constant from level to level 
+        UIManager.instance.HighScoreText.text = "HighScore: " + highScore;
+        currentScore = PlayerPrefs.GetInt("CurrentScore");// current score should stay constant from level to level 
         UIManager.instance.scoreText.text = "Score:" + currentScore;
 
         canPause = true;

@@ -1111,7 +1111,7 @@ PrefabInstance:
     - target: {fileID: 6101075301982298024, guid: b571ec9a1f2794ab496acc728d125b14,
         type: 3}
       propertyPath: nextLevel
-      value: Level1
+      value: EndGameScene
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b571ec9a1f2794ab496acc728d125b14, type: 3}
