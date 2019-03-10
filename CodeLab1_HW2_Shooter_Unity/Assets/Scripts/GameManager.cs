@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
     public string nextLevel;
 
     private bool canPause;
+   
    
     private void Awake()
     {
@@ -77,7 +79,7 @@ public class GameManager : MonoBehaviour
             Wave.instance.canSpawnWaves = false;
             
             MusicController.instance.PlayGameOver();
-            PlayerPrefs.SetInt("High Score", highScore); //storing high score at game over
+            PlayerPrefs.SetInt("HighScore", highScore); //storing high score at game over
 
             canPause = false;
 
@@ -105,8 +107,8 @@ public class GameManager : MonoBehaviour
         if (currentScore > highScore)
         {
             highScore = currentScore;
-            UIManager.instance.HighScoreText.text = "High Score: " + highScore;
-            //PlayerPrefs.SetInt("High Score", highScore);
+            UIManager.instance.HighScoreText.text = "HighScore: " + highScore;
+            PlayerPrefs.SetInt("HighScore", highScore);
         }
     }
 
@@ -140,7 +142,7 @@ public class GameManager : MonoBehaviour
             UIManager.instance.highScoreNotice.SetActive(true);
         }
         
-        PlayerPrefs.SetInt("High Score", highScore); //displaying/saving high score at end of level 
+        PlayerPrefs.SetInt("HighScore", highScore); //displaying/saving high score at end of level 
         PlayerPrefs.SetInt("Current Lives", currentLives);
         
         yield return new WaitForSeconds(waitForLevelEnd);

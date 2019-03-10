@@ -7,8 +7,8 @@ public class EnemyWave : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.DetachChildren();
-        Destroy(gameObject);
+        //transform.DetachChildren();
+        //Destroy(gameObject);
         
     }
 
